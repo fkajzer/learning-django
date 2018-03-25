@@ -1,0 +1,30 @@
+{% extends "posts/post_base.html" %}
+
+<div class="col-md-4">
+  {% if user.is_authenticated %}
+  <div class="card card-with-shadow">
+
+    <div class="content">
+
+      <h5>Your Communities</h5>
+      <ul class="list-unstyled">
+        {% for membership in get_user_communities %}
+        <li class="community li-with-bullet">
+          <a href="{% url 'communities:single' slug=membership.community.slug %}"></a>
+        </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+
+  </div>
+  {% endif %}
+</div>
+
+{% block post_content %}
+
+<div class="col-md-8">
+  {% include "posts/_post.html" %}
+</div>
+
+{% endblock %}

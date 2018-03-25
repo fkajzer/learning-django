@@ -1,0 +1,32 @@
+{% extends "communities/community_base.html" %}
+
+{% block precommunity %}
+<h1>{{community.name}}</h1>
+<h2>Member Count {{community.members.count}}</h2>
+
+<div class="content">
+  {% if user in community.members.all %}
+  <a href="{% url 'communities:leave' slug=community.slug %}"
+     class="btn btn-large btn-warning">
+     <span class="glyphicon glyphicon-remove"></span>Leave
+   </a>
+   {% else %}
+   <a href="{% url 'communities:join' slug=community.slug %}"
+      class="btn btn-large btn-fill btn-primary">
+      <span class="glyphicon glyphicon-ok"></span>Join
+    </a>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block community_content %}
+<div class="col-md-8">
+  {% if community.posts.count == 0 %}
+  <h2>No posts yet!</h2>
+  {% else %}
+  {% for post in community.posts.all %}
+    {% include "posts/_post.html" %}
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}
