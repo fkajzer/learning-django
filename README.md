@@ -1,6 +1,6 @@
 # learning-django
 
-django 2.0 and python 3.6
+django 2.0.3 and python 3.6.4
 
 make sure to install all required packages!
 
